@@ -32,8 +32,8 @@ jobs:
         run: pip install pytest && pytest -q
       - name: Commit results
         run: |
-          git config user.name "cardinalgrid-bot"
-          git config user.email "contact@cardinalgrid.com"
+          git config user.name "Ricardo Guerra"
+          git config user.email "rwguerra@gmail.com"
           git add results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv
           git diff --cached --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
           git push
