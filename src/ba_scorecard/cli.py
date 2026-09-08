@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-from datetime import date
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .data import Period, build_tidy, load_tidy, periods_between
@@ -31,7 +31,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_dl = sub.add_parser("download", help="download and tidy EIA-930 six-month files")
     p_dl.add_argument("--from", dest="start", default="2015H2")
-    p_dl.add_argument("--to", dest="end", default=str(Period.containing(date.today())))
+    p_dl.add_argument("--to", dest="end", default=str(Period.containing(datetime.now(timezone.utc).date())))
     p_dl.add_argument("--force", action="store_true")
 
     p_sc = sub.add_parser("score", help="build scorecard tables from tidy data")
@@ -51,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if a.cmd == "update":
-        current = Period.containing(date.today())
+        current = Period.containing(datetime.now(timezone.utc).date())
         build_tidy([current], raw, tidy_dir, force=True)
         df = load_tidy(tidy_dir)
         summary = build(df, results, recent_days=a.recent_days)

@@ -24,8 +24,8 @@ jobs:
           path: data/tidy
           key: tidy-${{ hashFiles('src/ba_scorecard/data.py') }}-${{ github.run_id }}
           restore-keys: tidy-${{ hashFiles('src/ba_scorecard/data.py') }}-
-      - name: Ensure history since 2024H1
-        run: ba-scorecard -v download --from 2024H1
+      - name: Ensure full history since 2015H2
+        run: ba-scorecard -v download --from 2015H2
       - name: Update current half-year and rebuild results
         run: ba-scorecard -v update
       - name: Run tests
@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "Ricardo Guerra"
           git config user.email "rwguerra@users.noreply.github.com"
-          git add results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv
+          git add results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv results/excluded_series_mismatch.csv
           git diff --cached --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
           git push

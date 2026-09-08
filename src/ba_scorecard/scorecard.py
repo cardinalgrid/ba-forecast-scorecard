@@ -15,6 +15,8 @@ from .metrics import aggregate, daily_scores, rank
 
 log = logging.getLogger(__name__)
 
+SERIES_MISMATCH_BIAS = 0.25  # |median daily bias| above this means forecast and demand are not the same quantity
+
 # BAs that report no demand (generation-only or aggregators) are dropped from rankings automatically
 # because they never reach MIN_HOURS_PER_DAY valid hours.
 
@@ -33,8 +35,19 @@ def build(tidy: pd.DataFrame, results_dir: Path, recent_days: int = 30) -> dict:
     monthly.to_csv(results_dir / "ba_monthly.csv", index=False, float_format="%.6f")
     yearly.to_csv(results_dir / "ba_yearly.csv", index=False, float_format="%.6f")
 
-    # Rankings: only BAs with meaningful coverage (>= 180 scored days) and material demand (>= 500 MW mean)
-    eligible = overall[(overall["days"] >= 180) & (overall["mean_demand_mw"] >= 500)]
+    # Rankings: only BAs with meaningful coverage (>= 180 scored days), material demand (>= 500 MW mean)
+    # and no series mismatch. A BA whose *median* daily bias exceeds +/-25% is reporting a forecast and a
+    # demand that do not describe the same quantity (unit, footprint or column error); that is a data
+    # problem, not a forecast problem, so it is listed separately instead of ranked.
+    med_bias = daily[daily["scored"]].groupby("ba")["bias_pct"].median().rename("median_daily_bias_pct")
+    overall = overall.merge(med_bias, on="ba", how="left")
+    mismatch = overall[overall["median_daily_bias_pct"].abs() > SERIES_MISMATCH_BIAS]
+    eligible = overall[
+        (overall["days"] >= 180) & (overall["mean_demand_mw"] >= 500) & (overall["median_daily_bias_pct"].abs() <= SERIES_MISMATCH_BIAS)
+    ]
+    mismatch[["ba", "region", "days", "mean_demand_mw", "median_daily_bias_pct", "mape"]].to_csv(
+        results_dir / "excluded_series_mismatch.csv", index=False, float_format="%.6f"
+    )
     ranking = rank(eligible, "mape")
     ranking.to_csv(results_dir / "ranking_overall.csv", index=False, float_format="%.6f")
 
@@ -67,7 +80,8 @@ def build(tidy: pd.DataFrame, results_dir: Path, recent_days: int = 30) -> dict:
         "ba_days_scored": len(scored),
         "hours_scored": int(scored["hours_valid"].sum()),
         "eligible_balancing_authorities": len(eligible),
-        "eligibility_rule": "at least 180 scored days and mean demand >= 500 MW",
+        "eligibility_rule": "at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%",
+        "excluded_for_series_mismatch": mismatch[["ba", "region", "median_daily_bias_pct"]].round(4).to_dict(orient="records"),
         "demand_weighted_mape_eligible": demand_weighted_mape,
         "median_ba_mape_eligible": float(eligible["mape"].median()) if len(eligible) else None,
         "share_of_ba_days_under_forecast_at_peak_eligible": float((scored_elig["peak_hour_pct_error"] < 0).mean()),
