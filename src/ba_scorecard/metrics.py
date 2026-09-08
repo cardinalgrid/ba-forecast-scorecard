@@ -7,8 +7,9 @@ Conventions
   demand or missing forecast are excluded and counted in ``hours_excluded``.
 * Hours where forecast/demand falls outside [1/IMPLAUSIBLE_RATIO, IMPLAUSIBLE_RATIO] are treated as
   data-quality failures (a zero, a unit error, a stale value), not as forecast error: they are
-  excluded from the error metrics and counted in ``hours_implausible``. The threshold is
-  deliberately loose so that genuine extreme-weather misses (tens of percent) are kept.
+  excluded from the error metrics and counted in ``hours_implausible``. The band is wide enough to keep
+  every documented extreme-weather miss (the worst day-ahead under-forecast in the FERC/NERC Elliott
+  inquiry was 11.6%) and narrow enough to drop unit errors and partial reports.
 * ``peak_hour_pct_error``: forecast error at the hour of the *actual* daily peak, as a share of
   that peak. This is the number that matters for reserve adequacy.
 * ``peak_mw_pct_error``: (max forecast - max demand) / max demand for the day, regardless of hour.
@@ -21,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 MIN_HOURS_PER_DAY = 20  # a BA-day with fewer valid hours is not scored
-IMPLAUSIBLE_RATIO = 3.0  # forecast/demand outside [1/3, 3] is a data problem, not a forecast miss
+IMPLAUSIBLE_RATIO = 2.0  # forecast/demand outside [1/2, 2] is a data problem, not a forecast miss
 
 
 def _valid(df: pd.DataFrame) -> pd.Series:
@@ -96,6 +97,7 @@ def aggregate(daily: pd.DataFrame, by: list[str]) -> pd.DataFrame:
         peak_hour_pct_error_mean=("peak_hour_pct_error", "mean"),
         peak_hour_abs_pct_error_mean=("peak_hour_pct_error", lambda x: np.abs(x).mean()),
         worst_under_forecast_pct=("peak_hour_pct_error", "min"),
+        p99_under_forecast_pct=("peak_hour_pct_error", lambda x: x.quantile(0.01)),
         under_forecast_day_share=("under_day", "mean"),
         mean_demand_mw=("mean_demand_mw", "mean"),
         imputed_share=("imputed_share", "mean"),

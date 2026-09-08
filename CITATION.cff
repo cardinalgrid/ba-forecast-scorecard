@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software or its results, please cite it as below."
 type: software
 title: "BA Forecast Scorecard: scoring U.S. balancing authorities' day-ahead load forecasts from EIA-930"
-version: 0.1.0
+version: 0.1.1
 date-released: 2026-09-08
 license: Apache-2.0
 repository-code: "https://github.com/cardinalgrid/ba-forecast-scorecard"

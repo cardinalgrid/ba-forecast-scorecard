@@ -85,12 +85,13 @@ def build(tidy: pd.DataFrame, results_dir: Path, recent_days: int = 30) -> dict:
         "demand_weighted_mape_eligible": demand_weighted_mape,
         "median_ba_mape_eligible": float(eligible["mape"].median()) if len(eligible) else None,
         "share_of_ba_days_under_forecast_at_peak_eligible": float((scored_elig["peak_hour_pct_error"] < 0).mean()),
+        "p99_under_forecast_at_peak_eligible": float(scored_elig["peak_hour_pct_error"].quantile(0.01)) if len(scored_elig) else None,
         "worst_single_day_under_forecast_at_peak_eligible": _row_to_dict(
             scored_elig.loc[scored_elig["peak_hour_pct_error"].idxmin(), ["ba", "date", "peak_hour_pct_error", "peak_demand_mw"]]
         ),
         "share_of_scored_hours_imputed": float(scored["imputed_hours"].sum() / scored["hours_valid"].sum()),
         "hours_flagged_implausible": int(daily["hours_implausible"].sum()),
-        "implausible_rule": "forecast/demand outside [1/3, 3], or forecast <= 0; excluded from error metrics",
+        "implausible_rule": "forecast/demand outside [1/2, 2], or forecast <= 0; excluded from error metrics",
         "recent_window_days": recent_days,
         "ranking_overall_top5": ranking.head(5)[["rank", "ba", "region", "mape", "days"]].to_dict(orient="records"),
         "ranking_overall_bottom5": ranking.tail(5)[["rank", "ba", "region", "mape", "days"]].to_dict(orient="records"),

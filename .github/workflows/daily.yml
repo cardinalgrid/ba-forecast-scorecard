@@ -28,12 +28,14 @@ jobs:
         run: ba-scorecard -v download --from 2015H2
       - name: Update current half-year and rebuild results
         run: ba-scorecard -v update
+      - name: Refresh README numbers
+        run: python scripts/render_readme.py
       - name: Run tests
         run: pip install pytest && pytest -q
       - name: Commit results
         run: |
           git config user.name "Ricardo Guerra"
           git config user.email "rwguerra@users.noreply.github.com"
-          git add results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv results/excluded_series_mismatch.csv
+          git add README.md results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv results/excluded_series_mismatch.csv
           git diff --cached --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
           git push
