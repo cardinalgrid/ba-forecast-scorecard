@@ -1,5 +1,9 @@
 # BA Forecast Scorecard
 
+[![Tests](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/tests.yml/badge.svg)](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/tests.yml)
+[![Daily update](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/daily.yml/badge.svg)](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/daily.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 **How well do U.S. balancing authorities forecast their own load?**
 
 EIA's Hourly Electric Grid Monitor (Form EIA-930) publishes, for every balancing authority in the Lower 48, the hourly demand that occurred and the day-ahead demand forecast the BA itself submitted, back to July 2015. That means the real forecast error of every U.S. grid operator is public. This project measures it, continuously.
@@ -73,7 +77,7 @@ ba-forecast-scorecard/
 
 ## Citing
 
-Each monthly report has its own Zenodo DOI; the concept DOI for the project will be listed here with the first release.
+Citation metadata is in `CITATION.cff` (GitHub shows a "Cite this repository" button) and `.zenodo.json`. Each release will be archived on Zenodo with a DOI; the concept DOI will be listed here with the first release.
 
 ## License
 

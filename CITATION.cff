@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+type: software
+title: "BA Forecast Scorecard: scoring U.S. balancing authorities' day-ahead load forecasts from EIA-930"
+version: 0.1.0
+date-released: 2026-09-08
+license: Apache-2.0
+repository-code: "https://github.com/cardinalgrid/ba-forecast-scorecard"
+url: "https://cardinalgrid.com/scorecard"
+authors:
+  - family-names: "Guerra Filho"
+    given-names: "Ricardo Wagner Correia"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add when created
+keywords:
+  - load forecasting
+  - EIA-930
+  - balancing authority
+  - grid reliability
+  - forecast evaluation
+  - open data
+abstract: >
+  Daily scoring of every U.S. balancing authority's own day-ahead demand forecast using the
+  public EIA-930 six-month balance files (hourly demand, day-ahead demand forecast, imputation
+  flags). Computes MAPE, bias, RMSE and peak-hour error per BA-day, aggregates by month, year and
+  named grid event, applies explicit data-quality rules, and publishes rankings and summaries.

@@ -1,0 +1,27 @@
+{
+  "title": "BA Forecast Scorecard: scoring U.S. balancing authorities' day-ahead load forecasts from EIA-930",
+  "upload_type": "software",
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Guerra Filho, Ricardo Wagner Correia",
+      "affiliation": "Cardinal Grid (independent)"
+    }
+  ],
+  "keywords": [
+    "load forecasting",
+    "EIA-930",
+    "balancing authority",
+    "grid reliability",
+    "forecast evaluation",
+    "data quality",
+    "open data"
+  ],
+  "description": "<p>Daily scoring of every U.S. balancing authority's own day-ahead demand forecast using the public EIA-930 six-month balance files (hourly demand, day-ahead demand forecast, imputation flags). Computes MAPE, bias, RMSE and peak-hour error per BA-day, aggregates by month, year and named grid event, applies explicit data-quality rules, and publishes rankings and summaries. Part of the Cardinal Grid open initiative: <a href=\"https://cardinalgrid.com/scorecard\">cardinalgrid.com/scorecard</a>.</p>",
+  "related_identifiers": [
+    { "identifier": "https://github.com/cardinalgrid/ba-forecast-scorecard", "relation": "isSupplementTo", "scheme": "url" },
+    { "identifier": "https://www.eia.gov/electricity/gridmonitor/", "relation": "isDerivedFrom", "scheme": "url" }
+  ],
+  "communities": [{ "identifier": "cardinal-grid" }]
+}

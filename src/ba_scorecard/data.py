@@ -10,10 +10,10 @@ file per half-year under ``data/tidy``. Column names below are those published b
 from __future__ import annotations
 
 import logging
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
-from typing import Iterable
 
 import pandas as pd
 import requests
@@ -47,14 +47,14 @@ class Period:
     half: int  # 1 or 2
 
     @classmethod
-    def parse(cls, text: str) -> "Period":
+    def parse(cls, text: str) -> Period:
         text = text.strip().upper()
         if len(text) != 6 or text[4] != "H" or text[5] not in "12":
             raise ValueError(f"Bad period {text!r}; expected like 2024H1")
         return cls(int(text[:4]), int(text[5]))
 
     @classmethod
-    def containing(cls, d: date) -> "Period":
+    def containing(cls, d: date) -> Period:
         return cls(d.year, 1 if d.month <= 6 else 2)
 
     def __str__(self) -> str:
@@ -64,10 +64,10 @@ class Period:
     def url(self) -> str:
         return BASE_URL.format(year=self.year, half=HALVES[self.half - 1])
 
-    def next(self) -> "Period":
+    def next(self) -> Period:
         return Period(self.year + 1, 1) if self.half == 2 else Period(self.year, 2)
 
-    def __le__(self, other: "Period") -> bool:
+    def __le__(self, other: Period) -> bool:
         return (self.year, self.half) <= (other.year, other.half)
 
 
@@ -94,8 +94,7 @@ def download(period: Period, raw_dir: Path, force: bool = False, timeout: int = 
         r.raise_for_status()
         tmp = dest.with_suffix(".part")
         with open(tmp, "wb") as f:
-            for chunk in r.iter_content(chunk_size=1 << 20):
-                f.write(chunk)
+            f.writelines(r.iter_content(chunk_size=1 << 20))
         tmp.replace(dest)
     return dest
 
