@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ba-forecast-scorecard"
+version = "0.1.0"
+description = "Daily scoring of every U.S. balancing authority's own day-ahead load forecast, from EIA-930 public data."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "Ricardo W. C. Guerra Filho" }]
+keywords = ["load forecasting", "EIA-930", "balancing authority", "grid reliability", "open data"]
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "requests>=2.31",
+  "pyarrow>=11",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+ba-scorecard = "ba_scorecard.cli:main"
+
+[project.urls]
+Homepage = "https://cardinalgrid.com/scorecard"
+Repository = "https://github.com/cardinalgrid/ba-forecast-scorecard"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ba_scorecard = ["data/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110

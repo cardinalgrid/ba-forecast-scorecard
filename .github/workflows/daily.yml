@@ -1,0 +1,39 @@
+name: Daily scorecard update
+
+on:
+  schedule:
+    - cron: "30 15 * * *" # 15:30 UTC daily, after EIA's morning refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e .
+      - name: Restore tidy history
+        uses: actions/cache@v4
+        with:
+          path: data/tidy
+          key: tidy-${{ hashFiles('src/ba_scorecard/data.py') }}-${{ github.run_id }}
+          restore-keys: tidy-${{ hashFiles('src/ba_scorecard/data.py') }}-
+      - name: Ensure history since 2024H1
+        run: ba-scorecard -v download --from 2024H1
+      - name: Update current half-year and rebuild results
+        run: ba-scorecard -v update
+      - name: Run tests
+        run: pip install pytest && pytest -q
+      - name: Commit results
+        run: |
+          git config user.name "cardinalgrid-bot"
+          git config user.email "contact@cardinalgrid.com"
+          git add results/summary.json results/ranking_overall.csv results/ranking_recent.csv results/ba_monthly.csv results/ba_yearly.csv results/events_by_ba.csv
+          git diff --cached --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
+          git push

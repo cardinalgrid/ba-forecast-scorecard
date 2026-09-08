@@ -1,0 +1,100 @@
+{
+  "generated_at_utc": "2026-09-08T22:41:05+00:00",
+  "package_version": "0.1.0",
+  "source": "EIA-930 six-month balance files, https://www.eia.gov/electricity/gridmonitor/",
+  "first_date": "2024-01-01",
+  "last_date": "2026-06-30",
+  "balancing_authorities_total": 64,
+  "balancing_authorities_scored": 55,
+  "ba_days_scored": 47404,
+  "hours_scored": 1136300,
+  "eligible_balancing_authorities": 43,
+  "eligibility_rule": "at least 180 scored days and mean demand >= 500 MW",
+  "demand_weighted_mape_eligible": 0.041855920978804334,
+  "median_ba_mape_eligible": 0.040169271186701334,
+  "share_of_ba_days_under_forecast_at_peak_eligible": 0.6610518724566012,
+  "worst_single_day_under_forecast_at_peak_eligible": {
+    "ba": "PSEI",
+    "date": "2026-01-30",
+    "peak_hour_pct_error": -0.6653363740022805,
+    "peak_demand_mw": 3508.0
+  },
+  "share_of_scored_hours_imputed": 1.4080788524157354e-05,
+  "hours_flagged_implausible": 4314,
+  "implausible_rule": "forecast/demand outside [1/3, 3], or forecast <= 0; excluded from error metrics",
+  "recent_window_days": 30,
+  "ranking_overall_top5": [
+    {
+      "rank": 1,
+      "ba": "PGE",
+      "region": "NW",
+      "mape": 0.013639658711760134,
+      "days": 912
+    },
+    {
+      "rank": 2,
+      "ba": "SOCO",
+      "region": "SE",
+      "mape": 0.014609557034888056,
+      "days": 912
+    },
+    {
+      "rank": 3,
+      "ba": "AVA",
+      "region": "NW",
+      "mape": 0.01699499586301167,
+      "days": 911
+    },
+    {
+      "rank": 4,
+      "ba": "BPAT",
+      "region": "NW",
+      "mape": 0.019666624370174163,
+      "days": 912
+    },
+    {
+      "rank": 5,
+      "ba": "GCPD",
+      "region": "NW",
+      "mape": 0.020401280664182366,
+      "days": 912
+    }
+  ],
+  "ranking_overall_bottom5": [
+    {
+      "rank": 39,
+      "ba": "LDWP",
+      "region": "CAL",
+      "mape": 0.09838166821243645,
+      "days": 900
+    },
+    {
+      "rank": 40,
+      "ba": "WALC",
+      "region": "SW",
+      "mape": 0.12480908875235348,
+      "days": 908
+    },
+    {
+      "rank": 41,
+      "ba": "WACM",
+      "region": "NW",
+      "mape": 0.15294219529506062,
+      "days": 812
+    },
+    {
+      "rank": 42,
+      "ba": "FPC",
+      "region": "FLA",
+      "mape": 0.23560799085778902,
+      "days": 907
+    },
+    {
+      "rank": 43,
+      "ba": "PSEI",
+      "region": "NW",
+      "mape": 0.3055077294348914,
+      "days": 834
+    }
+  ]
+}

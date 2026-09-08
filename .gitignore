@@ -1,0 +1,14 @@
+# raw and tidy data are downloaded, never committed
+data/raw/
+data/tidy/
+results/ba_daily.csv
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.venv/
