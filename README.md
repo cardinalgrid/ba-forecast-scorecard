@@ -9,19 +9,19 @@
 EIA's Hourly Electric Grid Monitor (Form EIA-930) publishes, for every balancing authority in the Lower 48, the hourly demand that occurred and the day-ahead demand forecast the BA itself submitted, back to July 2015. That means the real forecast error of every U.S. grid operator is public. This project measures it, continuously.
 
 <!-- results:start -->
-> Status: **pipeline live (v0.1.1)**. Download, tidy, scoring, event slicing, data-quality rules, tests and a daily GitHub Action are in this repository. Results for the full public record, 2015-07-01 to 2026-06-30, are in [`results/`](results/) and refreshed daily. The dashboard at [cardinalgrid.com/scorecard](https://cardinalgrid.com/scorecard) follows in October 2026.
+> Status: **pipeline live (v0.1.1)**. Download, tidy, scoring, event slicing, data-quality rules, tests and a daily GitHub Action are in this repository. Results for the full public record, 2015-07-01 to 2026-09-09, are in [`results/`](results/) and refreshed daily. The dashboard at [cardinalgrid.com/scorecard](https://cardinalgrid.com/scorecard) follows in October 2026.
 
-## Results (2015-07-01 to 2026-06-30, generated 2026-09-08)
+## Results (2015-07-01 to 2026-09-09, generated 2026-09-09)
 
 Read these as a first pass from public data, with the caveats below, not as a verdict on any operator.
 
-- 72 balancing authorities appear in the files; 58 report both demand and a day-ahead forecast; **42 are eligible for ranking** (at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%). 206,335 BA-days and 4,945,622 hours were scored.
-- **Demand-weighted day-ahead MAPE across eligible BAs: 3.54%**; median BA: 4.20%.
-- **At the hour of the actual daily peak, the forecast was below actual demand on 59% of eligible BA-days.** One eligible BA-day in a hundred under-forecasts the peak by more than 27.4%.
-- Lowest MAPE: PGE (1.8%), BPAT (2.0%), TVA (2.2%), GCPD (2.4%), ERCO (2.5%). Highest among eligible: LDWP (7.8%), WACM (8.6%), WALC (9.9%), TEPC (11.2%), FPC (22.0%).
+- 72 balancing authorities appear in the files; 58 report both demand and a day-ahead forecast; **42 are eligible for ranking** (at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%). 209,936 BA-days and 5,031,899 hours were scored.
+- **Demand-weighted day-ahead MAPE across eligible BAs: 3.56%**; median BA: 4.20%.
+- **At the hour of the actual daily peak, the forecast was below actual demand on 59% of eligible BA-days.** One eligible BA-day in a hundred under-forecasts the peak by more than 27.7%.
+- Lowest MAPE: PGE (1.8%), BPAT (2.0%), TVA (2.2%), ERCO (2.5%), GCPD (2.5%). Highest among eligible: LDWP (7.8%), WACM (8.6%), WALC (9.9%), TEPC (11.1%), FPC (22.0%).
 - Excluded for series mismatch (median daily bias beyond +/-25%, i.e. forecast and demand do not describe the same quantity): AEC (+88%), PSEI (-29%). Listed in `results/excluded_series_mismatch.csv`, not ranked.
 - Worst single eligible BA-day at the peak hour: PACE on 2016-04-02, forecast 50% below a 10,048 MW peak. Single-day extremes may still be data problems; the percentile above is the robust figure.
-- 114,326 hours were flagged implausible (forecast/demand outside [1/2, 2], or forecast <= 0; excluded from error metrics) and excluded from error metrics; EIA-imputed demand was 0.0002% of scored hours.
+- 114,714 hours were flagged implausible (forecast/demand outside [1/2, 2], or forecast <= 0; excluded from error metrics) and excluded from error metrics; EIA-imputed demand was 0.0002% of scored hours.
 
 Event slices (Winter Storm Uri, Elliott, the January 2024 Arctic storms, the January 2025 cold wave, and others) are in `results/events_by_ba.csv`; monthly and yearly tables per BA in `results/ba_monthly.csv` and `results/ba_yearly.csv`.
 
