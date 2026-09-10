@@ -2,6 +2,7 @@
 
 [![Tests](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/tests.yml/badge.svg)](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/tests.yml)
 [![Daily update](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/daily.yml/badge.svg)](https://github.com/cardinalgrid/ba-forecast-scorecard/actions/workflows/daily.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22697386.svg)](https://doi.org/10.5281/zenodo.22697386)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 **How well do U.S. balancing authorities forecast their own load?**
@@ -73,7 +74,14 @@ ba-forecast-scorecard/
 
 ## Citing
 
-Citation metadata is in `CITATION.cff` (GitHub shows a "Cite this repository" button) and `.zenodo.json`. Each release will be archived on Zenodo with a DOI; the concept DOI will be listed here with the first release.
+Every release is archived on Zenodo. Cite the concept DOI to refer to the project (it always resolves to the latest version), or the version DOI for the exact code you used.
+
+- Concept DOI: [10.5281/zenodo.22697386](https://doi.org/10.5281/zenodo.22697386)
+- v0.1.1: [10.5281/zenodo.22697387](https://doi.org/10.5281/zenodo.22697387)
+
+> Guerra Filho, R. W. C. (2026). *BA Forecast Scorecard: scoring U.S. balancing authorities' day-ahead load forecasts from EIA-930* (v0.1.1). Zenodo. https://doi.org/10.5281/zenodo.22697387
+
+Citation metadata is also in `CITATION.cff` (GitHub's "Cite this repository" button) and `.zenodo.json`.
 
 ## License
 
