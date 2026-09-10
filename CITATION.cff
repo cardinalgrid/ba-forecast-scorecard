@@ -18,7 +18,7 @@ url: "https://cardinalgrid.com/scorecard"
 authors:
   - family-names: "Guerra Filho"
     given-names: "Ricardo Wagner Correia"
-    # orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: add when created
+    orcid: "https://orcid.org/0000-0001-6699-9951"
 keywords:
   - load forecasting
   - EIA-930
