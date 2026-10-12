@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-10-11T19:38:23+00:00",
+  "generated_at_utc": "2026-10-12T22:33:00+00:00",
   "package_version": "0.1.1",
   "source": "EIA-930 six-month balance files, https://www.eia.gov/electricity/gridmonitor/",
   "first_date": "2015-07-01",
-  "last_date": "2026-10-11",
+  "last_date": "2026-10-12",
   "balancing_authorities_total": 72,
   "balancing_authorities_scored": 58,
-  "ba_days_scored": 211583,
-  "hours_scored": 5071365,
+  "ba_days_scored": 211635,
+  "hours_scored": 5072612,
   "eligible_balancing_authorities": 42,
   "eligibility_rule": "at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%",
   "excluded_for_series_mismatch": [
@@ -19,21 +19,21 @@
     {
       "ba": "PSEI",
       "region": "NW",
-      "median_daily_bias_pct": -0.2895
+      "median_daily_bias_pct": -0.2897
     }
   ],
-  "demand_weighted_mape_eligible": 0.03559809627266197,
-  "median_ba_mape_eligible": 0.04205923814384129,
-  "share_of_ba_days_under_forecast_at_peak_eligible": 0.5946497566730571,
-  "p99_under_forecast_at_peak_eligible": -0.27791403659943625,
+  "demand_weighted_mape_eligible": 0.03559855611574637,
+  "median_ba_mape_eligible": 0.042056065925913474,
+  "share_of_ba_days_under_forecast_at_peak_eligible": 0.5946828963353502,
+  "p99_under_forecast_at_peak_eligible": -0.2779637895200329,
   "worst_single_day_under_forecast_at_peak_eligible": {
     "ba": "PACE",
     "date": "2016-04-02",
     "peak_hour_pct_error": -0.5,
     "peak_demand_mw": 10048.0
   },
-  "share_of_scored_hours_imputed": 2.169041273897659e-06,
-  "hours_flagged_implausible": 115079,
+  "share_of_scored_hours_imputed": 2.16850805857022e-06,
+  "hours_flagged_implausible": 115083,
   "implausible_rule": "forecast/demand outside [1/2, 2], or forecast <= 0; excluded from error metrics",
   "recent_window_days": 30,
   "ranking_overall_top5": [
@@ -41,36 +41,36 @@
       "rank": 1,
       "ba": "PGE",
       "region": "NW",
-      "mape": 0.01818215019074006,
-      "days": 4042
+      "mape": 0.01818006824951244,
+      "days": 4043
     },
     {
       "rank": 2,
       "ba": "BPAT",
       "region": "NW",
-      "mape": 0.019995757572528677,
-      "days": 4118
+      "mape": 0.019994988552450924,
+      "days": 4119
     },
     {
       "rank": 3,
       "ba": "TVA",
       "region": "TEN",
-      "mape": 0.02223476393110577,
-      "days": 4084
+      "mape": 0.0222331193550578,
+      "days": 4085
     },
     {
       "rank": 4,
       "ba": "ERCO",
       "region": "TEX",
-      "mape": 0.02454020355107031,
-      "days": 4105
+      "mape": 0.02453686106209509,
+      "days": 4106
     },
     {
       "rank": 5,
       "ba": "GCPD",
       "region": "NW",
-      "mape": 0.024712156892340142,
-      "days": 4118
+      "mape": 0.02471079969233748,
+      "days": 4119
     }
   ],
   "ranking_overall_bottom5": [
@@ -78,8 +78,8 @@
       "rank": 38,
       "ba": "LDWP",
       "region": "CAL",
-      "mape": 0.0777182472633121,
-      "days": 4067
+      "mape": 0.07772265293353933,
+      "days": 4068
     },
     {
       "rank": 39,
@@ -92,22 +92,22 @@
       "rank": 40,
       "ba": "WALC",
       "region": "SW",
-      "mape": 0.09975450939001171,
-      "days": 4098
+      "mape": 0.0997583532829449,
+      "days": 4099
     },
     {
       "rank": 41,
       "ba": "TEPC",
       "region": "SW",
-      "mape": 0.11029794315773525,
-      "days": 3816
+      "mape": 0.11027840085066883,
+      "days": 3817
     },
     {
       "rank": 42,
       "ba": "FPC",
       "region": "FLA",
-      "mape": 0.22060469823261047,
-      "days": 4100
+      "mape": 0.22060508200179885,
+      "days": 4101
     }
   ]
 }
