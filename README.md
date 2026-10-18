@@ -12,7 +12,7 @@ EIA's Hourly Electric Grid Monitor (Form EIA-930) publishes, for every balancing
 <!-- results:start -->
 > Status: **pipeline live (v0.1.1)**. Download, tidy, scoring, event slicing, data-quality rules, tests and a daily GitHub Action are in this repository. Results for the full public record, 2015-07-01 to 2026-10-17, are in [`results/`](results/) and refreshed daily. The dashboard at [cardinalgrid.com/scorecard](https://cardinalgrid.com/scorecard) follows in October 2026.
 
-## Results (2015-07-01 to 2026-10-17, generated 2026-10-17)
+## Results (2015-07-01 to 2026-10-17, generated 2026-10-18)
 
 Read these as a first pass from public data, with the caveats below, not as a verdict on any operator.
 
