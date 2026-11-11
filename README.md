@@ -10,13 +10,13 @@
 EIA's Hourly Electric Grid Monitor (Form EIA-930) publishes, for every balancing authority in the Lower 48, the hourly demand that occurred and the day-ahead demand forecast the BA itself submitted, back to July 2015. That means the real forecast error of every U.S. grid operator is public. This project measures it, continuously.
 
 <!-- results:start -->
-> Status: **pipeline live (v0.1.1)**. Download, tidy, scoring, event slicing, data-quality rules, tests and a daily GitHub Action are in this repository. Results for the full public record, 2015-07-01 to 2026-11-10, are in [`results/`](results/) and refreshed daily. The dashboard at [cardinalgrid.com/scorecard](https://cardinalgrid.com/scorecard) follows in October 2026.
+> Status: **pipeline live (v0.1.1)**. Download, tidy, scoring, event slicing, data-quality rules, tests and a daily GitHub Action are in this repository. Results for the full public record, 2015-07-01 to 2026-11-11, are in [`results/`](results/) and refreshed daily. The dashboard at [cardinalgrid.com/scorecard](https://cardinalgrid.com/scorecard) follows in October 2026.
 
-## Results (2015-07-01 to 2026-11-10, generated 2026-11-10)
+## Results (2015-07-01 to 2026-11-11, generated 2026-11-11)
 
 Read these as a first pass from public data, with the caveats below, not as a verdict on any operator.
 
-- 72 balancing authorities appear in the files; 58 report both demand and a day-ahead forecast; **43 are eligible for ranking** (at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%). 213,099 BA-days and 5,107,695 hours were scored.
+- 72 balancing authorities appear in the files; 58 report both demand and a day-ahead forecast; **43 are eligible for ranking** (at least 180 scored days, mean demand >= 500 MW, and |median daily bias| <= 25%). 213,149 BA-days and 5,108,900 hours were scored.
 - **Demand-weighted day-ahead MAPE across eligible BAs: 3.56%**; median BA: 4.22%.
 - **At the hour of the actual daily peak, the forecast was below actual demand on 60% of eligible BA-days.** One eligible BA-day in a hundred under-forecasts the peak by more than 27.9%.
 - Lowest MAPE: PGE (1.8%), BPAT (2.0%), TVA (2.2%), ERCO (2.4%), GCPD (2.5%). Highest among eligible: WACM (8.6%), SWPW (9.3%), WALC (10.0%), TEPC (11.0%), FPC (22.1%).
